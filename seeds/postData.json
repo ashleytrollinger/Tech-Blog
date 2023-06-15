@@ -1,0 +1,12 @@
+[
+    {
+        "title": "How to create a repo",
+        "content": "Copy the ssh key to your clipboard then run the command 'git clone *paste' in your terminal. This will clone the repo and link it to your coding environment.",
+        "user_id": "1"
+    },
+    {
+        "title": "Syntax for creating a SQL database",
+        "content": "If you want to create a SQL database create a .sql file and use the following syntax. DROP DATABASE example IF EXISTS; CREATE DATABASE example; ",
+        "user_id": "3"
+    }
+]
