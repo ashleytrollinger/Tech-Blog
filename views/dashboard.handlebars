@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-auto">
-        <h2>Welcome, {{user.username}}!</h2>
+        <h2>Welcome, {{username}}!</h2>
     </div>
 </div>
 <div class="row mt-4">
@@ -22,23 +22,24 @@
         </form>
     </div>
 
-    {{#if post.length}}
+    {{#if posts.length}}
     <div class="col-md-6 post-list">
         <h3>My Posts:</h3>
 
-        {{#each post as |post|}}
+        {{#each posts as |post|}}
+        {{log this}}
         <h2>{{post.title}}</h2>
-        <p>Created by {{user.username}} on {{format_date post.date}}</p>
+        <p>Created by {{../username}} on {{format_date post.date}}</p>
         <p>
             {{post.content}}
         </p>
         <button class="btn btn-sm " data-id="{{post.id}}">EDIT</button>
         <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
     </div>
+    {{/each}}
 </div>
-{{/each}}
 </div>
 {{/if}}
 </div>
 
-<script src="../public/js/dashboard.js"></script>
+<script src="/js/dashboard.js"></script>

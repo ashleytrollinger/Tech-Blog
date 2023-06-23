@@ -18,11 +18,13 @@ router.post('/', async (req, res) => {
 });
 //Log into an Account
 router.post('/login', async (req, res) => {
+
     try {
         //Checking the log in credentials 
         const userData = await User.findOne({ where: { username: req.body.username } });
-
+        console.log(userData)
         if (!userData) {
+
             res.status(400).json({ message: 'Incorrect Log In credentials' });
             return;
         }

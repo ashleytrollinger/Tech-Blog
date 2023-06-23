@@ -6,7 +6,7 @@ const newFormHandler = async (event) => {
 
 
     if (title && content) {
-        const response = await fetch(`/api/post`, {
+        const response = await fetch(`/api/posts`, {
             method: 'POST',
             body: JSON.stringify({ title, content }),
             headers: {
@@ -27,7 +27,7 @@ const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
 
-        const response = await fetch(`/api/post/${id}`, {
+        const response = await fetch(`/api/posts/${id}`, {
             method: 'DELETE',
         });
 
@@ -94,18 +94,21 @@ const signupFormHandler = async (event) => {
     }
 };
 
-document
-    .querySelector('.login-form')
-    .addEventListener('submit', loginFormHandler);
+if (document.querySelector('.login-form')) {
+    document.querySelector('.login-form')
+        .addEventListener('submit', loginFormHandler);
 
-document
-    .querySelector('.signup-form')
-    .addEventListener('submit', signupFormHandler);
+    document
+        .querySelector('.signup-form')
+        .addEventListener('submit', signupFormHandler);
 
-document
-    .querySelector('.new-post-form')
-    .addEventListener('submit', newFormHandler);
+}
+if (document.querySelector('.new-post-form')) {
+    document
+        .querySelector('.new-post-form')
+        .addEventListener('submit', newFormHandler);
 
-document
-    .querySelector('.post-list')
-    .addEventListener('click', delButtonHandler);
+    document
+        .querySelector('.post-list')
+        .addEventListener('click', delButtonHandler);
+}
