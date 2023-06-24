@@ -1,3 +1,23 @@
+const logout = async (event) => {
+    event.preventDefault();
+    const response = await fetch('/api/users/logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+        document.location.replace('/');
+        console.log('logged out')
+    } else {
+        alert(response.statusText);
+        console.log('still logged in')
+    }
+};
+
+if (document.getElementById('logout')) {
+    document.getElementById('logout').addEventListener('click', logout);
+}
+
 const newFormHandler = async (event) => {
     event.preventDefault();
 
@@ -49,6 +69,31 @@ const delButtonHandler = async (event) => {
 //         });
 //     }
 // }
+
+const newCommentHandler = async (event) => {
+
+    event.preventDefault();
+
+    const comment = document.querySelector('#comment-content').value.trim();
+
+
+    if (comment) {
+        const response = await fetch(`/api/comments`, {
+            method: 'POST',
+            body: JSON.stringify({ comment }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            document.location.reload();
+        } else {
+            alert('Failed to leave comment');
+        }
+    }
+}
+
 const loginFormHandler = async (event) => {
     event.preventDefault();
 
@@ -112,4 +157,10 @@ if (document.querySelector('.post-list')) {
     document
         .querySelector('.post-list')
         .addEventListener('click', delButtonHandler);
+}
+if (document.querySelector('.new-comment-form')) {
+    console.log("WORKING")
+    document
+        .querySelector('.new-comment-form')
+        .addEventListener('submit', newCommentHandler);
 }
