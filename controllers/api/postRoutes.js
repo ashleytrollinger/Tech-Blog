@@ -19,6 +19,7 @@ router.post('/', withAuth, async (req, res) => {
         res.status(400).json(err);
     }
 });
+
 //Delete a post
 router.delete('/', withAuth, async (req, res) => {
     try {

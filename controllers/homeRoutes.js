@@ -54,14 +54,14 @@ router.get('/post/:id', withAuth, async (req, res) => {
             include: [
                 {
                     model: User,
-                    attributes: ['name'],
+                    attributes: ['username'],
                 },
                 {
                     model: Comment,
                     attributes: ['comment', 'date'],
                     include: {
                         model: User,
-                        attributes: ['name'],
+                        attributes: ['username'],
                     }
                 }
             ],
@@ -75,6 +75,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
         });
     } catch (err) {
         res.status(500).json(err);
+        console.log(err)
     }
 });
 
@@ -89,7 +90,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         });
 
         const user = userData.get({ plain: true });
-console.log(user);
+        console.log(user);
         res.render('dashboard', {
             ...user,
             logged_in: true
