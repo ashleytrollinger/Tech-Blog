@@ -22,7 +22,9 @@ router.post('/', withAuth, async (req, res) => {
 
 //Delete a post
 router.delete('/', withAuth, async (req, res) => {
+    console.log(req.param.id)
     try {
+
         const postData = await Post.destroy({
             where: {
                 id: req.params.id,

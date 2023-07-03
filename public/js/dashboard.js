@@ -44,15 +44,17 @@ const newFormHandler = async (event) => {
 
 
 const delButtonHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-        const id = event.target.getAttribute('data-id');
 
+    if (event.target.hasAttribute('data-id')) {
+        // need to access the id of the post. seems to be the common theme throughout this project kms :)
+        const id = event.target.getAttribute('data-id');
+        console.log( id);
         const response = await fetch(`/api/posts/${id}`, {
             method: 'DELETE',
         });
 
         if (response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/dashboard');
         } else {
             alert('Failed to delete post');
         }
@@ -77,10 +79,12 @@ const newCommentHandler = async (event) => {
     const comment = document.querySelector('#comment-content').value.trim();
 
 
+    const post_id = document.querySelector('#postId').value;
+    console.log("in dashboard js" + " " + post_id)
     if (comment) {
         const response = await fetch(`/api/comments`, {
             method: 'POST',
-            body: JSON.stringify({ comment }),
+            body: JSON.stringify({ comment, post_id }),
             headers: {
                 'Content-Type': 'application/json',
             },

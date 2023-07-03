@@ -72,16 +72,19 @@ router.get('/post/:id', withAuth, async (req, res) => {
                 }
             ],
         });
-
+        console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         const post = postData.get({ plain: true });
         const comments = commentData.map(comment => comment.get({ plain: true }));
-        console.log(post, comments);
+        console.log("homeroutes " + post.id);
+        console.log(comments)
         res.render('post', {
-            title: post.title,
-            user_id: post.user.username,
-            date: post.date,
-            content: post.content,
-            comment: comments,
+            // title: post.title,
+            // user_id: post.user.username,
+            // postId: post.id,
+            // date: post.date,
+            // content: post.content,
+            comments: comments,
+            post: post,
 
         });
     } catch (err) {
